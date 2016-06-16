@@ -1,33 +1,41 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link type="text/css" href="main.css" rel="stylesheet">
+    <link type="text/css" href="{% static "main.css" %}" rel="stylesheet">
     <title>{{ category.name }} :: ТОВАРЫ</title>
 </head>
 <body>
-    
-    <h1>Список товаров</h1>
-    <h2>Категории:</h2>
-    <u1>
-        {% for cat in cats %}
-            <li><a href="/goods/{{ cat.id }}/">{{ cat.name }}</a></li>
-        {% endfor %}
-    </u1>
-    <h2>Товары:</h2>
-    <table>
-        <tr>
-            <th>Название</th>
-            <th>Стоимость</th>
-            <th>Есть в наличии</th>
-        </tr>
-        {% for good in goods %}
+    <div id="header">
+        <h1>Каталог товаров</h1>
+    </div>
+    <div id="leftmenu">
+        <ul>
+            {% for cat in cats %}
+                <li><a href="/goods/{{ cat.id }}/">{{ cat.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="main">
+        <h2>{{ category.name }}</h2>
+        <table>
             <tr>
-                <td><a href="/goods/good/{{ good.id }}/">{{ good.name }}</a></td>
-                <td>{{ good.price }}</td>
-                <td>{% if good.in_stock %}Да{% else %}Нет{% endif %}</td>
+                <th>Наименование</th>
+                <th>Стоимость</th>
+                <th>Есть в наличии</th>
             </tr>
-        {% endfor %}
-    </table>
+            {% for good in goods %}
+                <tr>
+                    <td><a href="/goods/good/{{ good.id }}/">{{ good.name }}</a></td>
+                    <td>{{ good.price }}</td>
+                    <td class="centered">{% if good.in_stock %}Да{% else %}Нет{% endif %}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div id="footer">
+        <p>Все права мои</p>
+    </div>
 </body>
 </html>

@@ -37,9 +37,17 @@ def index(request, id):
 #             s = "<b>Нет такого товара (" + str(id) + ")</b>" + "<br>"
 #     return HttpResponse(s)
 
+# def good(request, id):
+#     try:
+#         good = Good.objects.get(pk = id)
+#     except Good.DoesNotExist:
+#         return HttpResponse("<b>Нет такого товара (" + str(id) + ")</b>" + "<br>")
+#     return render(request, "good.html", {"good": good})
+
 def good(request, id):
+    cats = Category.objects.all().order_by("name")
     try:
         good = Good.objects.get(pk = id)
     except Good.DoesNotExist:
         return HttpResponse("<b>Нет такого товара (" + str(id) + ")</b>" + "<br>")
-    return render(request, "good.html", {"good": good})
+    return render(request, "good.html", {"cats":cats, "good":good})
