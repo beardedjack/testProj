@@ -28,7 +28,7 @@
             {% for good in goods %}
                 <tr>
                     <td><a href="/goods/good/{{ good.id }}/">{{ good.name }}</a></td>
-                    <td>{{ good.price }}</td>
+                    <td>{% if not good.price > 0 %}Цена не указана{% else %}{{ good.price }}{% endif %}</td>
                     <td class="centered">{% if good.in_stock %}Да{% else %}Нет{% endif %}</td>
                 </tr>
             {% endfor %}
