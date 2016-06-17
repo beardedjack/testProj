@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ good.name }} :: {{ good.category.name }}{% endblock %}
 {% block main %}
-    <h2>{{ good.name }}</h2>
+    <p class="name">{{ good.name }}</p>
     <p class="category">Категория товара: {{ good.category.name }}</p>
     <h5>Описание товара:</h5>
     <p class="description">{{ good.description|linebreaksbr }}</p>

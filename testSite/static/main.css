@@ -35,8 +35,7 @@ body {
     margin-left: 110px;
     border-left: 1px #cccccc solid;
     padding: 10px;
-    color: darkslateblue;
-     background-color: whitesmoke;
+    background-color: whitesmoke;
 
 }
 #main h2 {
@@ -54,12 +53,25 @@ body {
 #main table td.centered {
     text-align: center;
 }
+#main p.name {
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 2px #e7d5c0;
+    font-size: 20px;
+    color: red;
+    background-color: white;
+}
 #main p.category {
     font-weight: bold;
 }
 #main p.description {
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 2px #e7d5c0;
     font-size: 10px;
-    background-color: aliceblue;
+    background-color: white;
     color: black;
 }
 #main p.not-in_stock {
