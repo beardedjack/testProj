@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <link type="text/css" href="{% static "main.css" %}" rel="stylesheet">
-    <title>{{ category.name }} :: ТОВАРЫ</title>
+    <title>{% block title %}{% endblock %} :: ТОВАРЫ</title>
 </head>
 <body>
     <div id="header">
-        <h1>Каталог товаров!</h1>
+        <h1>Каталог товаров</h1>
     </div>
     <div id="leftmenu">
         <ul>
@@ -18,24 +18,11 @@
         </ul>
     </div>
     <div id="main">
-        <h2>{{ category.name }}</h2>
-        <table>
-            <tr>
-                <th>Наименование</th>
-                <th>Стоимость</th>
-                <th>Есть в наличии</th>
-            </tr>
-            {% for good in goods %}
-                <tr>
-                    <td><a href="/goods/good/{{ good.id }}/">{{ good.name }}</a></td>
-                    <td>{% if not good.price > 0 %}Цена не указана{% else %}{{ good.price }}{% endif %}</td>
-                    <td class="centered">{% if good.in_stock %}Да{% else %}Нет{% endif %}</td>
-                </tr>
-            {% endfor %}
-        </table>
+        {% block main %}
+        {% endblock %}
     </div>
     <div id="footer">
-        <p>Все права мои</p>
+        <p>Все права принадлежат мне</p>
     </div>
 </body>
 </html>
