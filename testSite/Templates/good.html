@@ -20,11 +20,11 @@
     <div id="main">
         <h2>{{ good.name }}</h2>
         <p class="category">Категория: {{ good.category.name }}</p>
-        <h3>Описание:</h3>
-        <p>{{ good.description|linebreaksbr }}</p>
-        <p>Стоимость: {% if not good.price > 0 %}Цена не указана{% else %}{{ good.price }}{% endif %}</p>
-        <p>{% if not good.in_stock %}Нет в наличии!{% endif %}</p>
-        <p class="not-in_stock"><a href="/goods/{{ good.category.id }}/">Назад</a></p>
+        <h5>Описание:</h5>
+        <p class="description">{{ good.description|linebreaksbr }}</p>
+        <p>Стоимость: <b>{% if not good.price > 0 %}Цена не указана{% else %}{{ good.price }}{% endif %}</b></p>
+        <p class="not-in_stock">{% if not good.in_stock %}Нет в наличии!{% endif %}</p>
+        <p><a href="/goods/{{ good.category.id }}/">Назад</a></p>
     </div>
     <div id="footer">
         <p>Все права Мои!!!</p>

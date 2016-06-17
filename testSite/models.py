@@ -19,6 +19,7 @@ class Good(models.Model):
     in_stock = models.BooleanField(verbose_name="В наличии", default = True, db_index = True)
     category = models.ForeignKey(Category)
     price = models.DecimalField(verbose_name="Стоимость", decimal_places = 2, max_digits = 8, default = 0)
+    amount_available = models.IntegerField(verbose_name="Количество в наличии", default=0, null=0)
 
     def get_is_stock(self):
         if self.in_stock:

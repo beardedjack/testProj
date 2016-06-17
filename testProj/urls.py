@@ -21,6 +21,7 @@ import testSite
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^goods/', include("testSite.urls"))
+    url(r'^goods/', include("testSite.urls")),
+    url(r'', include("testSite.urls"))
 
 ]
