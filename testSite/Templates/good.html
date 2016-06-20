@@ -7,5 +7,5 @@
     <p class="description">{{ good.description|linebreaksbr }}</p>
     <p>Стоимость: <b>{% if not good.price > 0 %}Цена не указана{% else %}{{ good.price }} руб.{% endif %}</b></p>
     <p class="not-in_stock">{% if not good.in_stock %}Нет в наличии!{% endif %}</p>
-    <p><a href="/goods/{{ good.category.id }}/">Назад</a></p>
+    <p><a href="{% url "index" id=good.category.id %}?page={{ pn }}">Назад</a></p>
 {% endblock %}
