@@ -24,7 +24,10 @@ def index(request, id):
     else:
         cat = Category.objects.get(pk = id)
     goods = Good.objects.filter(category = cat).order_by("name")
-    return render(request, "index.html", {"category": cat, "cats": cats, "goods": goods})
+    pricesum = 0
+    for good in goods:
+        pricesum = pricesum + good.price
+    return render(request, "index.html", {"category": cat, "cats": cats, "goods": goods, "pricesum": pricesum})
 
 # def good(request, id):
 #     if id == None:

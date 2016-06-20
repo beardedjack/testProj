@@ -11,13 +11,17 @@ body {
 #header {
     text-align: center;
     color: darkgreen;
-    border-bottom: 1px #cccccc solid;
+
 }
 #header h1 {
     margin: 20px 0px 20px 0px;
     letter-spacing: 0.2em;
 }
 #leftmenu {
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 2px #e7d5c0;
     float: left;
     width: 100px;
     padding: 10px;
@@ -32,17 +36,23 @@ body {
     margin-bottom: 5px;
 }
 #main {
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 2px #e7d5c0;
     margin-left: 110px;
-    border-left: 1px #cccccc solid;
+
     padding: 10px;
     background-color: whitesmoke;
+
+
 }
 #main h2 {
     margin: 0px 0px 10px 0px;
 }
 #main table {
     width: 100%;
-    border-style: hidden;
+
     border-collapse: collapse;
 }
 #main table td, main table th {
@@ -52,17 +62,22 @@ body {
 #main table td.centered {
     text-align: center;
 }
+#main p.summ {
+    color: gray;
+    font-size: smaller;
+}
 #main p.name {
     box-sizing: border-box;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 0 2px 2px #e7d5c0;
     font-size: 20px;
-    color: red;
+    color: brown;
     background-color: white;
 }
 #main p.category {
     font-weight: bold;
+    color: darkblue;
 }
 #main p.description {
     box-sizing: border-box;
@@ -78,7 +93,7 @@ body {
 }
 #footer {
     text-align: right;
-    border-top: 1px #cccccc solid;
+
     padding-right: 10px;
 }
 #footer p {
