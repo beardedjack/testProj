@@ -21,7 +21,7 @@ body {
     float: left;
     width: 100px;
     padding: 10px;
-     background-color: whitesmoke;
+    background-color: whitesmoke;
 }
 #leftmenu ul {
     margin: 0px;
@@ -36,7 +36,6 @@ body {
     border-left: 1px #cccccc solid;
     padding: 10px;
     background-color: whitesmoke;
-
 }
 #main h2 {
     margin: 0px 0px 10px 0px;
