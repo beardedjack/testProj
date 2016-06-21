@@ -17,6 +17,7 @@ body {
     letter-spacing: 0.2em;
 }
 #leftmenu {
+
     box-sizing: border-box;
     padding: 10px;
     border-radius: 5px;
@@ -37,7 +38,7 @@ body {
 }
 #main {
     box-sizing: border-box;
-    padding: 10px;
+    padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 2px 2px #e7d5c0;
     margin-left: 110px;
@@ -60,7 +61,7 @@ body {
 #main table td.centered {
     text-align: center;
 }
-#main p.summ {
+#psumm {
     color: gray;
     font-size: smaller;
 }
