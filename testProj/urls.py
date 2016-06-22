@@ -15,13 +15,21 @@ Including another URLconf
 """
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+
+
+
+
 admin.autodiscover()
 
 import testSite
 
+
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^goods/', include("testSite.urls")),
-    url(r'', include("testSite.urls"))
+    url(r'', include("testSite.urls")),
+
+
 
 ]

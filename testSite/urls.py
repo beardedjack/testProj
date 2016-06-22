@@ -10,3 +10,4 @@ from testSite.twviews import GoodListView, GoodDetailView
 urlpatterns = patterns('',
                         url(r'^(?:(?P<id>\d+)/)?$', GoodListView.as_view(), name="index"),
                         url(r'^good/(?P<id>\d+)/$', GoodDetailView.as_view(), name="good"))
+

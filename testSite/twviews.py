@@ -1,6 +1,7 @@
 from django.views.generic.base import TemplateView
 from django.core.paginator import Paginator, InvalidPage
 from testSite.models import Category, Good
+from django.http import Http404
 
 class GoodListView(TemplateView):
     template_name = "index.html"
@@ -27,6 +28,10 @@ class GoodListView(TemplateView):
 
         allgoods = Good.objects.filter(category=iid).order_by("name")
         context["goodscount"] = allgoods.count
+        pricesum = 0
+        for good in allgoods:
+            pricesum = pricesum + good.price
+        context["pricesum"] = pricesum
         return context
 
 class GoodDetailView(TemplateView):
@@ -41,8 +46,8 @@ class GoodDetailView(TemplateView):
         try:
             context["good"] = Good.objects.get(pk = kwargs["id"])
         except Good.DoesNotExist:
-            raise RuntimeError
-        context["goodscount"] = 1
+            raise Http404("Нет такого товара")
+
         return context
 
 
