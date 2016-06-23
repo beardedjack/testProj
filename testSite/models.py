@@ -20,6 +20,7 @@ class Good(models.Model):
     category = models.ForeignKey(Category)
     price = models.DecimalField(verbose_name="Стоимость", decimal_places = 2, max_digits = 8, default = 0)
     amount_available = models.IntegerField(verbose_name="Количество в наличии", default=0, null=0)
+    miniaturefilename = models.CharField(verbose_name="Имя файла миниатюры", default="favicon.ico", max_length = 50, unique = False)
 
     def get_is_stock(self):
         if self.in_stock:
@@ -28,7 +29,7 @@ class Good(models.Model):
             return ""
 
     def __str__(self):
-        s = self.name + " (" + Category.objects.get(pk = self.category.pk).name + ")"
+        s = self.name
 
         if not self.in_stock:
             s = s + " (нет в наличии) "
