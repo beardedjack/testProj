@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <link type="text/css" href="{% static "main.css" %}" rel="stylesheet">
     <title>{% block title %}{% endblock %} :: ТОВАРЫ</title>
+ <link rel="shortcut icon" type="image/png" href="{% static "favicon.ico" %}">
 </head>
 <body>
     <div id="header">
@@ -21,6 +22,8 @@
         {% block main %}
         {% endblock %}
     </div>
+
+
     <div id="footer">
         <p>Все права принадлежат мне</p>
     </div>
