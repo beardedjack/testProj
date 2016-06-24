@@ -1,7 +1,9 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block title %}{{ good.name }} :: {{ good.category.name }}{% endblock %}
 {% block main %}
     <p class="name">{{ good.name }}</p>
+    <p class="name"><img src={% static good.get_image %} width="150" height="150"></p>
     <p class="category">Категория товара: {{ good.category.name }}</p>
     <h5>Описание товара:</h5>
     <p class="description">{{ good.description|linebreaksbr }}</p>

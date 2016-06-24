@@ -1,5 +1,7 @@
 from django.db import models
 
+from testProj.settings import MEDIA_ROOT
+
 # Create your models here.
 
 class Category(models.Model):
@@ -21,6 +23,12 @@ class Good(models.Model):
     price = models.DecimalField(verbose_name="Стоимость", decimal_places = 2, max_digits = 8, default = 0)
     amount_available = models.IntegerField(verbose_name="Количество в наличии", default=0, null=0)
     miniaturefilename = models.CharField(verbose_name="Имя файла миниатюры", default="favicon.ico", max_length = 50, unique = False)
+
+    image = models.FileField(upload_to=MEDIA_ROOT)
+
+    def get_image(self):
+        #return MEDIA_ROOT + self.miniaturefilename
+        return self.image
 
     def get_is_stock(self):
         if self.in_stock:

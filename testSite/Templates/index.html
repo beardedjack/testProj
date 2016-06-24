@@ -15,7 +15,8 @@
                 <td><a href="{% url "good" id=good.id %}?page={{ page_obj.number }}">{{ good.name }}</a></td>
                 <td>{% if not good.price > 0 %}Цена не указана{% else %}{{ good.price }}{% endif %}</td>
                 <td class="centered">{% if good.in_stock %}Да{% else %}Нет{% endif %}</td>
-                <td class="centered"><a href="{% url "good" id=good.id %}?page={{ page_obj.number }}"><img src="{% static {{ good.miniaturefilename  }} %}"></a></td>
+                 <td class="centered"><a href="{% url "good" id=good.id %}?page={{ page_obj.number }}"><img src={% static good.get_image %} width="50" height="50"></a></td>
+                <!-- <td class="centered"><img src={% static good.get_image %} width="50" height="50"></td> -->
             </tr>
         {% endfor %}
     </table>
