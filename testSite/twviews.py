@@ -6,6 +6,9 @@ from django.http import Http404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
+from django.views.generic.base import ContextMixin
+
+
 class GoodListView(ListView):
     template_name = "index.html"
     paginate_by = 10
