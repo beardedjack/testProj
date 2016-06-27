@@ -54,7 +54,7 @@ body {
     border-collapse: collapse;
 }
 #main table td, main table th {
-    border: 1px #666666 dotted;
+    border: 1px #BBBBBB dotted;
     padding: 5px;
     font-stretch: extra-condensed;
 }
