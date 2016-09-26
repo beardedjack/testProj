@@ -8,24 +8,43 @@
  <link rel="shortcut icon" type="image/png" href="{% static "favicon.ico" %}">
 </head>
 <body>
-    <div id="header">
-        <h1>Каталог товаров</h1>
-    </div>
-    <div id="leftmenu">
-        <ul>
-            {% for cat in cats %}
-                <li><a href="/goods/{{ cat.id }}/">{{ cat.name }}</a></li>
-            {% endfor %}
+    <div class="wrapper">
+        <header>Магазин Абрама Моисеевича</header>
+        <ul id="topmenu">
+            <li><a href="127">О нас</a></li>  <!-- Добавить адрес ссылки-->
+            <li><a href="127">Новинки</a></li>  <!-- Добавить адрес ссылки-->
+            <li><a href="127">Каталог</a></li>  <!-- Добавить адрес ссылки-->
+            <li><a href="127">Акции</a>
+                <ul class="submenu">
+                     <li><a href="127">Действующие акции</a></li>  <!-- Добавить адрес ссылки-->
+                     <li><a href="127">Архив акций</a></li>  <!-- Добавить адрес ссылки-->
+                </ul>
+            </li>  <!-- Добавить адрес ссылки-->
+            <li><a href="127">Галерея</a></li>  <!-- Добавить адрес ссылки-->
+            <li><a href="127">Бренды</a>
+                   <ul class="submenu">
+                     <li><a href="127">A..Z</a></li>  <!-- Добавить адрес ссылки-->
+                     <li><a href="127">А..Я</a></li>  <!-- Добавить адрес ссылки-->
+                </ul>
+            </li>  <!-- Добавить адрес ссылки-->
+            <li><a href="127">Оплата и доставка</a>
+                   <ul class="submenu">
+                     <li><a href="127">Оплата</a></li>  <!-- Добавить адрес ссылки-->
+                     <li><a href="127">Доставка</a></li>  <!-- Добавить адрес ссылки-->
+                </ul>
+            </li>  <!-- Добавить адрес ссылки-->
         </ul>
-    </div>
-    <div id="main">
-        {% block main %}
-        {% endblock %}
-    </div>
-
-
-    <div id="footer">
-        <p>Все права принадлежат мне</p>
+        <div class="content">
+            <div id="leftmenu">
+                {% block leftmenu %}
+                {% endblock %}
+            </div>
+            <div id="main">
+                {% block main %}
+                {% endblock %}
+            </div>
+        </div>
+        <footer>Коробка с карандашами</footer>
     </div>
 </body>
 </html>

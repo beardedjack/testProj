@@ -1,112 +1,523 @@
 @charset "utf-8";
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body  {
+  height: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
 body {
     margin: 0px;
     padding: 0px;
-    background-color: linen;
+    background-color: white;
     font-family: "Tahoma", sans-serif;
     font-size: 14px;
-    background-image: url("images (2).jpg");
-    color: navy;
+    color: darkgreen;
 }
-#header {
-    text-align: center;
-    text-shadow: 2px 2px 0 #cccccc;
-}
-#header h1 {
-    margin: 20px 0px 20px 0px;
-    letter-spacing: 0.2em;
-}
-#leftmenu {
 
-    box-sizing: border-box;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 2px 2px #e7d5c0;
-    float: left;
-    width: 100px;
-    padding: 10px;
-    background-color: whitesmoke;
-    background-image: url("images (4).jpg");
+a   {
+    text-decoration: none;
+    font-size: 14px;
 }
-#leftmenu ul {
+
+select  {                           /*Убираю стрелку из всех селектов*/
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+/*Header & Footer*/
+header {
+    box-sizing: border-box;
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 70px;
+    text-align: left;
+    vertical-align: middle;
+    padding: 10px 10px;
+    text-shadow: 2px 2px 0 #cccccc;
+    margin: 0px auto;
+    letter-spacing: 0.1em;
+    color: white;
+    font-size: 32px;
+    font-width: bold;
+    background: forestgreen;
+    border-bottom: 5px solid #FFFF00;
+}
+
+footer {
+    flex: 0 0 auto;
+    height: 70px;
+    padding: 10px 10px;
+    text-align: left;
+    vertical-align: middle;
+    color: white;
+    font-size: 14px;
+    font-width: bold;
+    background: forestgreen;
+    border-top: 5px solid #00BFFF;
+}
+
+
+/*Общее меню (верхнее меню)*/
+#topmenu    {
+    box-sizing: border-box;
+    margin: 0;
+    margin-top: 70px;
+    padding: 0;
+    list-style: none;
+    background: #00BFFF;                /*д.б. только в дизайне ссылок, оставлено для наглядности поведения блока*/
+    border-bottom: 5px solid #FFFF00;
+    height: auto;
+}
+
+#topmenu > li {
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    margin-right: -10px;
+    margin-left: 50px;
+    min-width: 10%;
+    white-space: nowrap;
+}
+
+#topmenu a  {
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    font-size: 14px;
+    font-width: bold;
+    text-transform: uppercase;
+    background: #00BFFF;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#topmenu a:hover    {
+    background: #FFFF00;
+    color: forestgreen;
+}
+
+#topmenu .submenu   {
+    z-index: 100;
+    display: none;              /*подменю изначально нет на экране*/
+    position: absolute;
+    margin: 0px;
+    padding: 0;
+    list-style: none;
+    width: 150px;
+    height: auto;
+    left: 0px;              /*можно сдвинуть подменю*/
+}
+
+#topmenu .submenu li {
+    border-bottom: 1px solid white;
+
+}
+
+#topmenu .submenu a {
+    text-transform: none;
+    font-size: 12px;
+    color: darkgreen;
+    font-weight: normal;
+    background: #FFFF00;
+}
+
+#topmenu .submenu a:hover   {
+    background: white;
+}
+
+#topmenu .submenu li:last-child   {
+    border-bottom: 0px solid white;
+}
+
+#topmenu > li:hover .submenu {        /*подменю появляется при наведении на родительский элемент (элемент меню)*/
+    display: block;
+}
+
+#topmenu a:active   {
+    color: forestgreen;
+}
+
+
+/*Меню категорий (левое меню)*/
+#leftmenu {
+    z-index: 10;
+    box-sizing: border-box;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    float: left;
+    width: 150px;
+    height: auto;
+}
+
+#leftmenu .menu li   {
     margin: 0px;
     padding: 0px;
-}
-#leftmenu ul li {
     list-style-type: none;
-    margin-bottom: 5px;
+    background: #FFFF00;
 }
+
+#leftmenu > .menu > li:nth-child(2n) > a  {
+    border-right: 5px solid #FFFF00;
+}
+
+#leftmenu > .menu > li:nth-child(2n+1) > a   {
+    border-right: 5px solid #00BFFF;
+}
+
+#leftmenu > .menu > li:last-child > a  {
+    border-bottom: 0px solid white;
+}
+
+#leftmenu .menu li a  {
+    display: block;
+    color: white;
+    font-weight: bolder;
+    padding: 20px 20px;
+    vertical-align: middle;
+    text-align: justify;
+    border-bottom: 1px solid white;
+    background: forestgreen;
+}
+
+#leftmenu  .menu  a:hover  {
+    color: darkgreen;
+    background: white;
+}
+
+#leftmenu a:active  {
+    color: forestgreen;
+}
+
+#leftmenu .menu .submenu    {
+    display: none;
+    margin: 0;
+    padding: 0;
+    margin-left: 20px;
+}
+
+#leftmenu .menu > li:hover .submenu {        /*подменю появляется при наведении на родительский элемент (элемент меню)*/
+    display: block;
+}
+
+#leftmenu .menu .submenu a  {
+    font-size: 12px;
+    font-weight: normal;
+    padding: 5px;
+}
+
+
+/*Список товаров*/
 #main {
     box-sizing: border-box;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 2px 2px #e7d5c0;
-    margin-left: 110px;
-    padding: 10px;
-    background-color: whitesmoke;
-    background-image: url("images (4).jpg");
+    padding: 10px 20px;
+    margin-left: 150px;
+    background-color: white;
 }
+
 #main h2 {
-    margin: 0px 0px 10px 0px;
+    display: inline-block;
+    position: relative;
+    margin: 60px 100px;
+    min-width: 20%;
+    margin-bottom: 60px;
+    color: darkgreen;
+    font-size: 32px;
+    font-weight: bolder;
 }
-#main table {
-    width: 100%;
-    border-collapse: collapse;
-}
-#main table td, main table th {
-    border: 1px #BBBBBB dotted;
-    padding: 5px;
-    font-stretch: extra-condensed;
-}
-#main table td.centered {
-    text-align: center;
-}
-#psumm {
-    color: gray;
-    font-size: smaller;
-}
-#main p.name {
+
+#main .filtr    {
     box-sizing: border-box;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 2px 2px #e7d5c0;
-    font-size: 20px;
-    color: brown;
-    background-color: white;
+    display: inline-block;
+    position: relative;
+    left: 5%;
+    margin-bottom: 20px;
+    width: 60%;
+    height: 20px;
 }
-#main p.category {
-    font-weight: bold;
-    color: darkblue;
-}
-#main p.description {
-    box-sizing: border-box;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 2px 2px #e7d5c0;
-    font-size: 10px;
-    background-color: white;
-    color: black;
-}
-#main p.not-in_stock {
-    color: #FF0000;
-}
-#footer {
-    text-align: right;
-    padding-right: 10px;
-}
-#footer p {
-    font-size: smaller;
+
+#main .filtr div   {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
     font-style: italic;
 }
+
+#main .filtr .choice   {
+    box-sizing: border-box;
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    left: 120px;
+    margin-right: 50px;
+    padding: 2px 5px;
+    text-align: center;
+    vertical-align: middle;
+    color: forestgreen;
+    font-size: 12px;
+    border: 1px solid darkgrey;
+}
+
+#main .filtr .up-down   {
+    box-sizing: border-box;
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    left: 220px;
+    padding: 2px 5px;
+    text-align: center;
+    vertical-align: middle;
+    color: forestgreen;
+    font-size: 12px;
+    border: 1px solid darkgrey;
+}
+
+#main .filtr input[type="reset"]    {
+    box-sizing: border-box;
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    left: 330px;
+    padding: 2px 5px;
+    text-align: center;
+    vertical-align: middle;
+    background: forestgreen;
+    color: white;
+    font-size: 12px;
+    border: 1px solid darkgrey;
+}
+
+#main .list-size    {
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    left: 5%;
+    margin-bottom: 60px;
+    width: 15%;
+}
+
+#main .list-size p   {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 100px;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-style: italic;
+}
+
+#main .list-size select   {
+    box-sizing: border-box;
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    left: 110px;
+    padding: 2px 5px;
+    text-align: center;
+    vertical-align: middle;
+    color: forestgreen;
+    font-size: 12px;
+    border: 1px solid darkgrey;
+}
+
+
+/*ТОВАРЫ (каталог)*/
+#main .good {
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    left: 5%;
+    border: 0px solid #C0C0C0;
+    width: 170px;
+    height: 170px;
+}
+
+#main .good .name-tbl a   {
+    display: inline-block;
+    padding: 5px 0px;
+    color: darkgreen;
+    font-size: 14px;
+    font-weight: bolder;
+    text-align: left;
+}
+
+#main .good .price-tbl   {
+    color: forestgreen;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: left;
+    padding: 5px 0px;
+}
+
+#main .good .available   {
+    color: darkgrey;
+    font-size: 11px;
+    font-style: italic;
+    text-align: left;
+}
+
+#psumm {
+    display: inline-block;
+    position: fixed;
+    left: 10px;
+    bottom: 100px;
+    color: darkgrey;
+    font-size: 11px;
+}
+
+/*Номера страниц*/
 #pagination {
+    display: inline-block;
+    position: relative;
+    bottom: 10px;
+    left: 5%;
     margin-top: 20px;
-}
-#pagination #previous-page {
-    float: left;
-}
-#pagination #num-pages {
+    margin-left: 0;
+    height: 80px;
+    min-width: 300px;
+    padding: 0px;
+    vertical-align: middle;
     text-align: center;
 }
+
+#pagination #num-pages, #pagination #previous-page, #pagination #next-page  {
+    padding: 0px;
+    margin: 0px;
+}
+
+#pagination #num-pages a    {
+    display: inline-block;
+    border: 1px solid darkgrey;
+    border-radius: 2px;
+    background: forestgreen;
+    color: white;
+    font-size: 12px;
+    font-weight: bolder;
+    padding: 5px;
+    margin: 0px;
+}
+
+#pagination #previous-page a, #pagination #next-page a {
+    display: inline-block;
+    border: 1px solid darkgrey;
+    border-radius: 2px;
+    background: forestgreen;
+    color: white;
+    font-size: 12px;
+    font-weight: bolder;
+    padding: 5px;
+    margin: 0px;
+}
+
+#pagination #previous-page  {
+    float: left;
+}
+
 #pagination #next-page {
     float: right;
 }
+
+
+/*Страница товара*/
+#main .name {
+    display: inline-block;
+    position: absolute;
+    left: 700px;
+    top: 150px;
+    font-size: 32px;
+    font-weight: bold;
+    color: darkgreen;
+}
+
+#main .category {
+    display: inline-block;
+    position: absolute;
+    top: 200px;
+    left: 700px;
+    color: forestgreen;
+    font-size: 14px;
+    font-style: italic;
+}
+
+#main .pic    {
+    display: block;
+    position: relative;
+    top: 50px;
+    width: 500px;
+    height: 600px;
+    border: 1px solid #C0C0C0;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px #cccccc;
+}
+
+#main .price  {
+    display: inline-block;
+    position: absolute;
+    top: 280px;
+    left: 700px;
+    color: darkgreen;
+    font-size: 32px;
+}
+
+#main .description  {
+    display: inline-block;
+    box-sizing: border-box;
+    position: absolute;
+    top: 430px;
+    left: 700px;
+    color: forestgreen;
+    font-size: 14px;
+    width: 40%;
+    height: auto;
+}
+
+#main .text   {
+    margin-top: 40px;
+    font-size: 11px;
+    color: darkgrey;
+    vertical-align: middle;
+    text-align: justify;
+}
+
+#main .not-in_stock {
+    color: #FF0000;
+}
+
+#main .back a {
+    display: block;
+    margin-top: 100px;
+    color: darkgreen;
+}
+
+#main .back a:active {
+    color: forestgreen;
+}
+
+
+
+

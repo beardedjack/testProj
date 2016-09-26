@@ -3,11 +3,14 @@
 {% block title %}{{ good.name }} :: {{ good.category.name }}{% endblock %}
 {% block main %}
     <p class="name">{{ good.name }}</p>
-    <p class="name"><img src={% static good.get_image %} width="150" height="150"></p>
-    <p class="category">Категория товара: {{ good.category.name }}</p>
-    <h5>Описание товара:</h5>
-    <p class="description">{{ good.description|linebreaksbr }}</p>
-    <p>Стоимость: <b>{% if not good.price > 0 %}Цена не указана{% else %}{{ good.price }} руб.{% endif %}</b></p>
-    <p class="not-in_stock">{% if not good.in_stock %}Нет в наличии!{% endif %}</p>
-    <p><a href="{% url "index" id=good.category.id %}?page={{ pn }}">Назад</a></p>
+    <p class="category">{{ good.category.name }}</p>            <!-- Указать "полный путь к товару", чтобы можно было выходить по ссылкам на любой уровень-->
+    <p class="price"><b>{% if not good.price > 0 %}Цена не указана{% else %}{{ good.price }} руб.{% endif %}</b></p>
+    <p class="price not-in_stock">{% if not good.in_stock %}Нет в наличии!{% endif %}</p>       <!-- Поправить!(если нет в наличии, не д. показываться цена)-->
+    <!-- Добавить цену с учетом скидки-->
+
+    <p class="pic"><img src={% static good.get_image %} width="150" height="150"></p>
+    <p class="description">Описание
+        <p class="description text">{{ good.description|linebreaksbr }}</p>
+    </p>
+    <p class="back"><a href="{% url "index" id=good.category.id %}?page={{ pn }}">Назад</a></p>
 {% endblock %}

@@ -1,27 +1,90 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block title %}{{ category.name }}{% endblock %}
-{% block main %}
-    <h2>{{ category.name }}</h2>
-    <table>
-        <tr>
-            <th>Наименование</th>
-            <th>Стоимость</th>
-            <th>Есть в наличии</th>
-            <th>Миниатюра</th>
-        </tr>
-        {% for good in object_list %}
-            <tr>
-                <td><a href="{% url "good" id=good.id %}?page={{ page_obj.number }}">{{ good.name }}</a></td>
-                <td>{% if not good.price > 0 %}Цена не указана{% else %}{{ good.price }}{% endif %}</td>
-                <td class="centered">{% if good.in_stock %}Да{% else %}Нет{% endif %}</td>
-                 <td class="centered"><a href="{% url "good" id=good.id %}?page={{ page_obj.number }}"><img src={% static good.get_image %} width="50" height="50"></a></td>
-                <!-- <td class="centered"><img src={% static good.get_image %} width="50" height="50"></td> -->
-            </tr>
+{% block leftmenu %}
+     <ul class="menu">
+         <li><a href="127">Категория для проверки подменю</a>
+            <ul class="submenu">
+                <li><a href="127">Пункт подменю с длинным названием</a></li>
+                <li><a href="127">Пункт подменю</a></li>
+                <li><a href="127">Пункт подменю</a></li>
+                <li><a href="127">Пункт подменю</a></li>
+            </ul>
+        </li>
+        {% for cat in cats %}
+             <li><a href="/goods/{{ cat.id }}/">{{ cat.name }}</a></li>                 <!-- Добавить подкатегрии с классом submenu-->
         {% endfor %}
-    </table>
-    {% if paginator.num_pages > 1 %}
-        <div id="pagination">
+     </ul>
+{% endblock %}
+{% block main %}
+    <h2>{{ category.name }}</h2><br>
+
+    <div class="filtr">
+        <div>Сортировать по:</div>
+         <form action="127" method="post">  <!-- Добавить адрес отправки формы-->
+            <select name="filter" size="1" class="choice">
+                <option value="price">цене</option>
+                <option value="new" selected>новизне</option>
+                <option value="pop">популярности</option>
+                <option value="name">наименованию</option>
+            </select>
+            <select name="direction" size="1" class="up-down">
+                <option value="down-up">по возрастанию</option>
+                <option value="up-down">по убыванию</option>
+            </select>
+            <input type="reset" name="reset-all" value="Сбросить">
+         </form>
+    </div><br>
+
+    <div class="list-size">
+        <p>Показывать по:</p>
+        <form action="127" method="post">  <!-- Добавить адрес отправки формы-->
+            <select name="size" size="1">
+                <option value="20">20</option>
+                <option value="50" selected>50</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+            </select>
+         </form>
+    </div>
+    <!--    Добавить разные сортировки для пользователя -->
+    <div class="sort">
+        <form action="127" method="post">
+            <div class="size">Размер:
+                <label><input type="checkbox" name="size[]" value="XS">XS</label>
+                <label><input type="checkbox" name="size[]" value="S">S</label>
+                <label><input type="checkbox" name="size[]" value="M">M</label>
+                <label><input type="checkbox" name="size[]" value="L">L</label>
+                <label><input type="checkbox" name="size[]" value="XL">XL</label>
+                <label><input type="checkbox" name="size[]" value="XXL">XXL</label>
+            </div>
+            <div class="color">Цвет:
+                <label><input type="checkbox" name="color[]" value="red" />Красный</label>
+                <label><input type="checkbox" name="color[]" value="blue" />Синий</label>
+                <label><input type="checkbox" name="color[]" value="white" />Белый</label>
+                <label><input type="checkbox" name="color[]" value="green" />Зеленый</label>
+                <label><input type="checkbox" name="color[]" value="yellow" />Желтый</label>
+                <label><input type="checkbox" name="color[]" value="purple" />Фиолетовый</label>
+                <label><input type="checkbox" name="color[]" value="black" />Черный</label>
+            </div>
+            <input type="submit" value="Применить">
+        </form>
+   </div>
+
+    <div>
+        {% for good in object_list %}
+            <div class="good">
+                <div class="centered pic-tbl"><a href="{% url "good" id=good.id %}?page={{ page_obj.number }}"><img src={% static good.get_image %} width="50" height="50"></a></div>
+                <div class="name-tbl"><a href="{% url "good" id=good.id %}?page={{ page_obj.number }}">{{ good.name }}</a></div>
+                <div class="price-tbl">{% if not good.price > 0 %}Цена не указана{% else %}{{ good.price }}{% endif %}</div>
+                <div class="available">{% if good.in_stock %}В наличии{% else %}Нет в наличии{% endif %}</div>
+                <!-- <td class="centered"><img src={% static good.get_image %} width="50" height="50"></td> -->
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if paginator.num_pages > 1 %}            <!-- если страниц больше 4, показывать ... и номер последней страницы. Добавить быстрые переходы на первую и последние страницы-->
+        <div id="pagination">                   <!-- Вопрос о текущей странице, чтобы изменить форматирование-->
             {% if page_obj.has_previous %}
                 <div id="previous-page"><a href="{% url "index" id=category.pk%}?page={{ page_obj.previous_page_number }}">&lt;</a></div>
             {% endif %}
@@ -31,7 +94,7 @@
             <div id="num-pages">
                {% for pn in paginator.page_range %}
                     {% if not forloop.first %}
-                        &nbsp;&nbsp;|&nbsp;&nbsp;
+                        &nbsp;&nbsp; &nbsp;&nbsp;       <!-- Зачем????????????-->
                     {% endif %}
                     {% if page_obj.number != pn %}
                        <a href="{% url "index" id=category.pk %}?page={{ pn }}">
@@ -44,9 +107,8 @@
             </div>
         </div>
     {% endif %}
- <p></p>
-    <div id="psumm">
-        <p>Всего товаров в категории: <b>{{ goodscount }}</b> на сумму <b>{{ pricesum }}</b> руб.</p>
 
+    <div id="psumm">
+        Всего товаров в категории: <br><b>{{ goodscount }}</b> на сумму <b>{{ pricesum }}</b> руб.
     </div>
 {% endblock %}
